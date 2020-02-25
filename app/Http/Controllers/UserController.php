@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('admin.post.index');
+        $data['users']=User::orderBy('id', 'desc')->get();
+        return view('admin.user.index', $data);
+
     }
 
     /**
@@ -23,7 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.post.create');
+        return view('admin.user.create');
     }
 
     /**
@@ -34,8 +37,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        session()->flash('success', 'Post Create Done!!');
-        return redirect()->route('post.index');
+
+        $data['name']=$request->namee;
+        $data['email']=$request->emaill;
+        $data['password']=bcrypt($request->passwordd);
+        User::create($data);
+        session()->flash('success', 'User Create Successfully!!');
+        return redirect()->route('user.index');
+
     }
 
     /**
@@ -46,7 +55,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return view('admin.post.show');
+        //
     }
 
     /**
@@ -57,7 +66,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.post.edit');
+        $data['user']=User::findOrFail($id);
+        return view('admin.user.edit', $data);
+
     }
 
     /**
@@ -69,10 +80,18 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        session()->flash('success', 'Post Update Done!!');
-        return redirect()->route('post.index');
-    }
 
+        $data['name']=$request->name;
+        $data['email']=$request->email;
+        if ($request->password != null){
+
+            $data['password']=bcrypt($request->password);
+        }
+        User::findOrFail($id)->update($data);
+        session()->flash('success', 'User Update Successfully!!');
+        return redirect()->route('user.index');
+
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -82,7 +101,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        session()->flash('warning', 'Post Delete Done!!');
-        return redirect()->route('post.index');
+        User::destroy($id);
+        session()->flash('success', 'User Delete Successfully!!');
+        return redirect()->route('user.index');
     }
 }
