@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function (){
     Route::get('dashboard', 'DashboardController@dashboard')->name('admin.dashboard');
     Route::resource('post', 'PostController');
     Route::resource('user', 'UserController');
+    Route::resource('category', 'CategoryController');
 });
 
 
