@@ -11,6 +11,7 @@ class Post extends Model
       'author_id',
       'title',
       'content',
-      'published_at'
+      'published_at',
+      'image'
     ];
 }

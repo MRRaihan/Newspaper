@@ -23,6 +23,12 @@
                             {{$post->published_at}}
                         </p>
                         <p>
+                            @if($post->image != null)
+                                <img src="{{asset($post->image)}}" alt="Image" width="100%">
+                            @endif
+                        </p>
+
+                        <p>
                            {{$post->content}}
                         </p>
                         <div class="text-right">
