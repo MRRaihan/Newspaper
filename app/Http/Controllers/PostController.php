@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Author;
+use App\Category;
+use App\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -13,7 +16,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('admin.post.index');
+        $data['categories']=Category::orderBy('name')->get();
+        $data['posts']=Post::all();
+        $data['serial']=1;
+        return view('admin.post.index', $data);
     }
 
     /**
@@ -23,7 +29,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.post.create');
+        $data['categories']=Category::orderBy('name')->get();
+        $data['authors']=Author::orderBy('name')->get();
+        return view('admin.post.create', $data);
     }
 
     /**
@@ -34,6 +42,16 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $data['category_id']=$request->category_id;
+        $data['author_id']=$request->author_id;
+        $data['title']=$request->title;
+        $data['content']=$request->content;
+        $data['status']=$request->status;
+
+        if ($request->status == 'published'){
+            $data['published_at']=date('Y-m-d');
+        }
+        Post::create($data);
         session()->flash('success', 'Post Create Done!!');
         return redirect()->route('post.index');
     }
@@ -41,47 +59,62 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        return view('admin.post.show');
+        $data['categories']=Category::orderBy('name')->get();
+        $data['authors']=Author::orderBy('name')->get();
+        $data['post']=$post;
+        return view('admin.post.show', $data);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        return view('admin.post.edit');
+        $data['categories']=Category::orderBy('name')->get();
+        $data['authors']=Author::orderBy('name')->get();
+        $data['post']=$post;
+        return view('admin.post.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
+        $data['category_id']=$request->category_id;
+        $data['author_id']=$request->author_id;
+        $data['title']=$request->title;
+        $data['content']=$request->content;
+        $data['status']=$request->status;
+        if ($request->status == 'published'){
+            $data['published_at']=date('Y-m-d');
+        }
+        $post->update($data);
         session()->flash('success', 'Post Update Done!!');
         return redirect()->route('post.index');
     }
 
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
+        $post->delete();
         session()->flash('warning', 'Post Delete Done!!');
         return redirect()->route('post.index');
     }

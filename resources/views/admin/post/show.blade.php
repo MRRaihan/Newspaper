@@ -8,14 +8,22 @@
             <div class="col-12 grid-margin" id="doc-intro">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="mb-4 mt-4">Title</h3>
+                        <h3 class="mb-4 mt-4">{{$post->title}}</h3>
+
                         <p class="card-subtitle">
-                           News, <i>Published</i><br>
-                            31 Jan 2020
+                            @foreach($authors as $author)
+                                @if($author->id == $post->author_id) {{$author->name}} @endif
+                            @endforeach
+                        </p>
+
+                        <p class="card-subtitle">
+                           @foreach($categories as $category)
+                              @if($category->id == $post->category_id) {{$category->name}} @endif
+                            @endforeach,  <i>{{ucfirst($post->status)}}</i><br>
+                            {{$post->published_at}}
                         </p>
                         <p>
-                            RoyalUI Admin is a responsive HTML template that is based on the CSS framework Bootstrap 4 and it is built with Sass. Sass compiler makes it easier to code and customize. If you are unfamiliar with Bootstrap or Sass, visit their
-                            website and read through the documentation. All of Bootstrap components have been modified to fit the style of RoyalUI Admin and provide a consistent look throughout the template
+                           {{$post->content}}
                         </p>
                         <div class="text-right">
                             <a href="{{route('post.index')}}" class="btn-sm btn btn-dribbble">Back</a>

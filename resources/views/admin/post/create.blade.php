@@ -11,8 +11,19 @@
                     @csrf
                     <div class="form-group">
                         <label for="category">Category</label>
-                        <select name="category" class="form-control" id="exampleSelectGender">
-                            <option>News</option>
+                        <select name="category_id" class="form-control" id="category">
+                            @foreach($categories as $category)
+                                <option value="{{$category->id}}">{{$category->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Author</label>
+                        <select name="author_id" class="form-control" id="author">
+                            @foreach($authors as $author)
+                                <option value="{{$author->id}}">{{$author->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
@@ -30,13 +41,13 @@
                         <div class="form-group">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="status" id="status">
+                                    <input value="published" type="radio" class="form-check-input" name="status" id="status">
                                     Published
                                 </label>
                             </div>
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="status" id="status">
+                                    <input value="unpublished" type="radio" class="form-check-input" name="status" id="status">
                                     Unpublished
                                 </label>
                             </div>
@@ -46,9 +57,9 @@
 
                     <div class="form-group">
                         <label>File upload</label>
-                        <input type="file" name="img[]" class="file-upload-default">
+                        <input type="file" name="image" class="file-upload-default">
                         <div class="input-group col-xs-12">
-                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                            <input name="image" type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                             <span class="input-group-append">
                           <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                         </span>
