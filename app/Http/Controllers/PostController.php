@@ -43,6 +43,15 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
+       $request->validate([
+           'category_id' => 'required',
+           'author_id' => 'required',
+           'title' => 'required',
+           'content' => 'required',
+           'status' => 'required',
+           'image' => 'mimes:jpeg,jpg,png',
+       ]);
+
         if ($request->hasFile('image')){
             $file=$request->file('image');
             $path='images/upload/post';
@@ -56,7 +65,6 @@ class PostController extends Controller
         $data['author_id']=$request->author_id;
         $data['title']=$request->title;
         $data['content']=$request->content;
-
         $data['status'] = $request->status;
         if($request->status == 'published'){
             $data['published_at'] = date('Y-m-d');
@@ -104,23 +112,31 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
 
+        $request->validate([
+            'category_id' => 'required',
+            'author_id' => 'required',
+            'title' => 'required',
+            'content' => 'required',
+            'status' => 'required',
+            'image' => 'mimes:jpeg,jpg,png',
+        ]);
+
         if ($request->hasFile('image')){
             $file=$request->file('image');
             $path='images/upload/post';
             $file_name=encrypt(time().rand(00000,99999)).'.'.$file->getClientOriginalExtension();
             $file->move($path, $file_name);
             $data['image']=$path.'/'.$file_name;
-
             if (file_exists($post->image)){
                 unlink($post->image);
             }
-
         }
         $data['category_id']=$request->category_id;
         $data['author_id']=$request->author_id;
         $data['title']=$request->title;
         $data['content']=$request->content;
         $data['status']=$request->status;
+
         if ($request->status == 'published'){
             $data['published_at']=date('Y-m-d');
         }

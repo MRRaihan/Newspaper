@@ -36,6 +36,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required'
+        ]);
        Category::create($request->except('_token'));
        session()->flash('success', 'Category Create Successfully!!');
        return redirect()->route('category.index');
@@ -74,6 +79,10 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required'
+        ]);
         $category->update($request->except('_token'));
         session()->flash('success', 'Category Update Successfully!!');
         return redirect()->route('category.index');

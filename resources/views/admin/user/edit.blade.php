@@ -13,11 +13,17 @@
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input value="{{$user->name}}" type="text" name="name" class="form-control" id="name" placeholder="User Name">
+                            @error('name')
+                            <div class="text-danger">{{$message}}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="email">E-Mail</label>
                             <input value="{{$user->email}}"  type="email" name="email" class="form-control" id="email" placeholder="User Email">
+                            @error('email')
+                            <div class="text-danger">{{$message}}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">

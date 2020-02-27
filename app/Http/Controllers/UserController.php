@@ -38,9 +38,14 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-        $data['name']=$request->namee;
-        $data['email']=$request->emaill;
-        $data['password']=bcrypt($request->passwordd);
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+        $data['name']=$request->name;
+        $data['email']=$request->email;
+        $data['password']=bcrypt($request->password);
         User::create($data);
         session()->flash('success', 'User Create Successfully!!');
         return redirect()->route('user.index');
@@ -80,7 +85,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required'
 
+        ]);
         $data['name']=$request->name;
         $data['email']=$request->email;
         if ($request->password != null){

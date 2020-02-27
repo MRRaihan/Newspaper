@@ -12,17 +12,26 @@
 
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" name="namee" class="form-control" id="name" placeholder="User Name">
+                            <input value="{{old('name')}}" type="text" name="name" class="form-control" id="name" placeholder="User Name">
+                            @error('name')
+                            <div class="text-danger">{{$message}}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="email">E-Mail</label>
-                            <input type="email" name="emaill" class="form-control" id="email" placeholder="User Email">
+                            <input value="{{old('email')}}" type="email" name="email" class="form-control" id="email" placeholder="User Email">
+                            @error('email')
+                            <div class="text-danger">{{$message}}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" name="passwordd" class="form-control" id="password" placeholder="User Password">
+                            <input value="{{old('password')}}" type="password" name="password" class="form-control" id="password" placeholder="User Password">
+                            @error('password')
+                            <div class="text-danger">{{$message}}</div>
+                            @enderror
                         </div>
 
                         <button type="submit" class="btn btn-primary mr-2 btn-sm">Save</button>

@@ -13,16 +13,25 @@
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" value="{{$author->name}}" name="name" class="form-control" id="name" placeholder="User Name">
+                            @error('name')
+                            <div class="text-danger">{{$message}}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" name="email" value="{{$author->email}}" class="form-control" id="email" placeholder="User Email">
+                            @error('email')
+                            <div class="text-danger">{{$message}}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="about">About</label>
                             <textarea name="about" class="form-control" id="about" rows="6" placeholder="About">{{$author->about}}</textarea>
+                            @error('about')
+                            <div class="text-danger">{{$message}}</div>
+                            @enderror
                         </div>
 
                         <button type="submit" class="btn btn-primary mr-2 btn-sm">Update</button>

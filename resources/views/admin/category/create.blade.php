@@ -12,12 +12,18 @@
 
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" name="name" class="form-control" id="name" placeholder="User Name">
+                            <input value="{{old('name')}}" type="text" name="name" class="form-control" id="name" placeholder="User Name">
+                            @error('name')
+                            <div class="text-danger">{{$message}}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea name="description" class="form-control" id="description" rows="6" placeholder="Description"></textarea>
+                            <textarea name="description" class="form-control" id="description" rows="6" placeholder="Description">{{old('description')}}</textarea>
+                            @error('description')
+                            <div class="text-danger">{{$message}}</div>
+                            @enderror
                         </div>
 
                         <button type="submit" class="btn btn-primary mr-2 btn-sm">Save</button>

@@ -18,7 +18,11 @@
                             @endforeach
 
                         </select>
+                        @error('category_id')
+                        <div class="text-danger">{{$message}}</div>
+                        @enderror
                     </div>
+
 
                     <div class="form-group">
                         <label for="author">Author</label>
@@ -28,16 +32,29 @@
                             @endforeach
 
                         </select>
+                        @error('author_id')
+                        <div class="text-danger">{{$message}}</div>
+                        @enderror
                     </div>
+
 
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input  type="text" name="title" class="form-control" id="title" placeholder="Title" value="{{$post->title}}">
+                        @error('title')
+                        <div class="text-danger">{{$message}}</div>
+                        @enderror
                     </div>
+
+
                     <div class="form-group">
                         <label for="content">Content</label>
                         <textarea name="content" class="form-control" id="content" rows="6" placeholder="Content">{{$post->content}}</textarea>
+                        @error('content')
+                        <div class="text-danger">{{$message}}</div>
+                        @enderror
                     </div>
+
 
 
                     <label>Status</label>
@@ -56,6 +73,9 @@
                                 </label>
                             </div>
                         </div>
+                        @error('status')
+                        <div class="text-danger">{{$message}}</div>
+                        @enderror
                     </div>
 
 
@@ -72,6 +92,9 @@
                         @if($post->image != null)
                             <img src="{{asset($post->image)}}" alt="Image" width="30%">
                         @endif
+                        @error('image')
+                        <div class="text-danger">{{$message}}</div>
+                        @enderror
                     </div>
 
 
