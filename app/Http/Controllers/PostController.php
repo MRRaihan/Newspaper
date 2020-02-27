@@ -56,10 +56,10 @@ class PostController extends Controller
         $data['author_id']=$request->author_id;
         $data['title']=$request->title;
         $data['content']=$request->content;
-        $data['status']=$request->status;
 
-        if ($request->status == 'published'){
-            $data['published_at']=date('Y-m-d');
+        $data['status'] = $request->status;
+        if($request->status == 'published'){
+            $data['published_at'] = date('Y-m-d');
         }
         Post::create($data);
         session()->flash('success', 'Post Create Done!!');

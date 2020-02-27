@@ -41,13 +41,13 @@
                         <div class="form-group">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input value="published" type="radio" class="form-check-input" name="status" id="status">
+                                    <input value="published" type="radio" class="form-check-input" name="status" id="published">
                                     Published
                                 </label>
                             </div>
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input value="unpublished" type="radio" class="form-check-input" name="status" id="status">
+                                    <input value="unpublished" type="radio" class="form-check-input" name="status" id="unpublished">
                                     Unpublished
                                 </label>
                             </div>
