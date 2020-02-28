@@ -56,6 +56,23 @@
                     </div>
 
 
+                    <label>Featured</label>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input @if(old('is_featured') == 1) checked @endif value="1" type="checkbox" class="form-check-input" name="is_featured" id="is_featured">
+                                    Yes
+                                </label>
+                            </div>
+
+                            @error('is_featured')
+                            <div class="text-danger">{{$message}}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+
                     <label>Status</label>
                     <div class="col-md-6">
                         <div class="form-group">
