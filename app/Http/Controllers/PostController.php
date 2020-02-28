@@ -148,6 +148,7 @@ class PostController extends Controller
         if ($request->status == 'published'){
             $data['published_at']=date('Y-m-d');
         }
+
         $post->update($data);
         session()->flash('success', 'Post Update Done!!');
         return redirect()->route('post.index');

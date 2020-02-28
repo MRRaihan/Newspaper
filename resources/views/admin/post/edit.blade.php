@@ -62,7 +62,7 @@
                         <div class="form-group">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input  @if($post->is_featured == 1) checked @endif  value="{{$post->is_featured}}" type="checkbox" class="form-check-input" name="is_featured" id="is_featured">
+                                    <input  @if($post->is_featured == 1) checked @endif  value="1" type="checkbox" class="form-check-input" name="is_featured" id="is_featured">
                                     Yes
                                 </label>
                             </div>
