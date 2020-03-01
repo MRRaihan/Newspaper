@@ -14,16 +14,14 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="category.html" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown05">
-                        <a class="dropdown-item" href="category.html">Lifestyle</a>
-                        <a class="dropdown-item" href="category.html">Food</a>
-                        <a class="dropdown-item" href="category.html">Adventure</a>
-                        <a class="dropdown-item" href="category.html">Travel</a>
-                        <a class="dropdown-item" href="category.html">Business</a>
+                        @foreach($categories as $category)
+                        <a class="dropdown-item" href="{{route('category', $category->id)}}">{{$category->name}}</a>
+                        @endforeach
                     </div>
 
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="{{route('about')}}">About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>

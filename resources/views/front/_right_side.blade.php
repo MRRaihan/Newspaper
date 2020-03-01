@@ -27,8 +27,8 @@
 <div class="sidebar-box">
     <h3 class="heading">Categories</h3>
     <ul class="categories">
-        @foreach($categories as $categorie)
-            <li><a href="#">{{ $categorie->name }} <span>(12)</span></a></li>
+        @foreach($categories as $category)
+            <li><a href="{{route('category', $category->id)}}">{{ $category->name }} <span>(12)</span></a></li>
         @endforeach
     </ul>
 </div>
