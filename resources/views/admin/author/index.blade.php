@@ -13,7 +13,6 @@
                              <th>SL#</th>
                              <th>Name</th>
                              <th>Email</th>
-                             <th>About</th>
                              <th>Actions</th>
                          </tr>
                          </thead>
@@ -23,8 +22,8 @@
                                  <td>{{$author->id}}</td>
                                  <td>{{$author->name}} </td>
                                  <td>{{$author->email}} </td>
-                                 <td>{{$author->about}}</td>
                                  <td>
+                                     <a class="btn btn-info btn-sm" href="{{route('author.show', $author->id)}}">Details</a>
                                      <a class="btn btn-facebook btn-sm" href="{{route('author.edit', $author->id)}}">Edit</a>
                                      <form class="d-inline-block" action="{{route('author.destroy', $author->id)}}" method="post">
                                          @csrf

@@ -25,4 +25,7 @@ class LoginController extends Controller
         session()->flash('success', 'LogOut Successfully!!');
         return redirect()->route('user.login');
     }
+    public function admin(){
+        return view('admin.login_form');
+    }
 }

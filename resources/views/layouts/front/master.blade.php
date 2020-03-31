@@ -1,30 +1,66 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-   @include('layouts.front._head')
+    @include('layouts.front._head')
+
 </head>
+
 <body>
 
 
-<div class="wrap">
 
-    <header role="banner">
-        @include('layouts.front._header')
+<div id="wrapper" class="wrap">
+
+
+
+    <!-- Header Container  -->
+    <header id="header" class=" variantleft type_1">
+        <!-- Header Top -->
+    @include('layouts.front._headerTop')
+        <!-- //Header Top -->
+
+        <!-- Header center -->
+    @include('layouts.front._headerCenter')
+        <!-- //Header center -->
+
+        <!-- Header Bottom -->
+
+    @include('layouts.front._headerNav')
+        <!-- Navbar switcher -->
+        <!-- //end Navbar switcher -->
+
     </header>
-    <!-- END header -->
+    <!-- //Header Container  -->
 
-    @yield('content')
+    <!-- Block Spotlight1  -->
+    <section class="so-spotlight1 ">
+        <div class="container">
+            <div class="row">
+                @yield('content')
+            </div>
 
-    <footer class="site-footer">
+        </div>
+    </section>
+
+
+
+
+
+    <!-- Footer Container -->
+    <footer class="footer-container type_footer1">
+        <!-- Footer Top Container -->
         @include('layouts.front._footer')
     </footer>
-    <!-- END footer -->
+    <!-- //end Footer Container -->
 
-</div>
 
-<!-- loader -->
-<div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#f4b214"/></svg></div>
-@include('layouts.front._script')
+    <!-- //Block Spotlight1  -->
+
+<!-- Include Libs & Plugins
+	============================================ -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+    @include('layouts.front._script')
+
 </body>
 </html>
-

@@ -40,9 +40,23 @@ class AuthorController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'about' => 'required'
+            'about' => 'required',
+            'image' => 'mimes:jpeg,jpg,png',
         ]);
-        Author::create($request->except('_token'));
+
+        if ($request->hasFile('image')){
+            $file=$request->file('image');
+            $path='images/upload/author';
+            $file_name=$file->getClientOriginalExtension();
+            $file->move($path, $file_name);
+            $data['image']=$path.'/'.$file_name;
+
+        }
+        $data['name']=$request->name;
+        $data['email']=$request->email;
+        $data['about']=$request->about;
+
+        Author::create($data);
         session()->flash('success', 'Author Create Seccessfully!!');
         return redirect()->route('author.index');
     }
@@ -55,7 +69,8 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        //
+        $data['author']=$author;
+        return view('admin.author.show', $data);
     }
 
     /**
@@ -82,9 +97,24 @@ class AuthorController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'about' => 'required'
+            'about' => 'required',
+            'image' => 'mimes:jpeg,jpg,png',
         ]);
-        $author->update($request->except('_token'));
+
+        if ($request->hasFile('image')){
+            $file=$request->file('image');
+            $path='images/upload/author';
+            $file_name=encrypt(time().rand(00000,99999)).'.'.$file->getClientOriginalExtension();
+            $file->move($path, $file_name);
+            $data['image']=$path.'/'.$file_name;
+            if (file_exists($author->image)){
+                unlink($author->image);
+            }
+        }
+        $data['name']=$request->name;
+        $data['email']=$request->email;
+        $data['about']=$request->about;
+        $author->update($data);
         session()->flash('success', 'Author Update Seccessfully!!');
         return redirect()->route('author.index');
 
@@ -98,6 +128,9 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
+        if (file_exists($author->image)){
+            unlink($author->image);
+        }
         $author->delete();
         session()->flash('success', 'Author Delete Seccessfully!!');
         return redirect()->route('author.index');

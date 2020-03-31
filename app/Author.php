@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Author extends Model
 {
-    protected $fillable=['name','email','about'];
+    protected $fillable=['name','email','about', 'image'];
     public function post(){
         return $this->hasMany(Post::class);
     }

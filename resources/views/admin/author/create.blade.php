@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Create New Author</h4>
 
-                    <form class="forms-sample" action="{{route('author.store')}}" method="post">
+                    <form class="forms-sample" action="{{route('author.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group">
@@ -31,6 +31,21 @@
                             <label for="about">About</label>
                             <textarea name="about" class="form-control" id="about" rows="6" placeholder="About">{{old('about')}}</textarea>
                             @error('about')
+                            <div class="text-danger">{{$message}}</div>
+                            @enderror
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>File upload</label>
+                            <input type="file" name="image" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                <input name="image" type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                <span class="input-group-append">
+                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                        </span>
+                            </div>
+                            @error('image')
                             <div class="text-danger">{{$message}}</div>
                             @enderror
                         </div>

@@ -13,11 +13,11 @@
                         <span class="mr-2">{{date('M d, Y', strtotime($post->published_at))}}</span> &bullet;
 
                     </div>
-                    <h1 class="mb-4">{{$post->title}}</h1>
+                    <h1 class="mb-5">{{$post->title}}</h1>
                     <a class="category mb-5" href="#">{{$post->category->name}}</a>
 
-                    <div class="post-content-body">
-                        {{$post->content}}
+                    <div class="post-content-body ">
+                        <h4 class="text-justify" style="line-height: 30px;">{{$post->content}}</h4>
                     </div>
 
                 </div>

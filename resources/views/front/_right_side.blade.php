@@ -1,6 +1,6 @@
 
 <div class="sidebar-box">
-    <h3 class="heading">Popular Posts</h3>
+    <h1 class="heading">Popular Posts</h1>
     <div class="post-entry-sidebar">
 
         <ul>
@@ -25,7 +25,7 @@
 <!-- END sidebar-box -->
 
 <div class="sidebar-box">
-    <h3 class="heading">Categories</h3>
+    <h1 class="heading">Categories</h1>
     <ul class="categories">
         @foreach($categories as $category)
             <li><a href="{{route('category', $category->id)}}">{{ $category->name }} <span>(12)</span></a></li>
