@@ -28,7 +28,7 @@
     <h1 class="heading">Categories</h1>
     <ul class="categories">
         @foreach($categories as $category)
-            <li><a href="{{route('category', $category->id)}}">{{ $category->name }} <span>(12)</span></a></li>
+            <li><a href="{{route('category', $category->id)}}">{{ $category->name }} <span>({{$category->post()->count()}})</span></a></li>
         @endforeach
     </ul>
 </div>
